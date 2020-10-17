@@ -35,6 +35,7 @@ class EventsController < ApplicationController
         format.html { render :new, alert: 'Please Sign In.' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   private

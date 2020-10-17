@@ -11,8 +11,10 @@
   </head>
 
   <body>
-    <%= display_propper_flash %>
     <%= login_helper %>
-    <%= yield %>
+    <div class="container"> 
+      <%= display_propper_flash %>
+      <%= yield %>
+    </div>
   </body>
 </html>
