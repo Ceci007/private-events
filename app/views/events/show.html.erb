@@ -17,15 +17,15 @@
   <strong>Description:</strong>
   <%= @event.description %>
 </p>
+<h1>Attendees:</h1>
+<div class="row">
 
-<p>
-  <strong>Attendees:</strong>
-  <% @event_attendees.each do |attendee| %>
-    <%= attendee.name %>
-  <% end %>
-</p>
+  <%= displaylist_user(@event_attendees) %>
+</div>
 
-<%= link_to 'BUY', "/buy/#{current_user.id}/#{@event.id}" %>
+<%= link_to 'BUY', "/buy/#{@event.id}" %>
 <br>
+
+
 <%= link_to 'Edit', edit_event_path(@event) %>
 <%= link_to 'Back', root_path %>
