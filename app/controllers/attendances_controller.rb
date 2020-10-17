@@ -8,17 +8,22 @@ class AttendancesController < ApplicationController
   end
 
   def buy
-    # crear un attendance nuevo con los parametros que le pasamos a la ruta
-    @buy = Attendance.new
-    @buy.user_id = params[:user_id] # it'll correspond to the one that's in the routes file
-    @buy.event_id = params[:event_id]
-    @current_event = Event.find_by_id(params[:event_id])
-    # necesitamos una validacion de que si se guardo bien nos lo haga saber
-
-    if @buy.save
-      redirect_to events_path
-    else
-      redirect_to event_path(@current_event)
+    event = Event.find(params[:event_id])
+    # unless current_user.nil?
+    # event.attendances.build(user_id: current_user.id)
+    # else
+    #   redirect_to event_path(event)
+    # end
+    respond_to do |format|
+      if current_user?
+        event.attendances.build(user_id: current_user.id)
+        event.save
+        format.html { redirect_to events_path, notice: 'Purchase went thru successfully!' }
+        format.json { render :show, status: :created, location: @attendance }
+      else
+        format.html { redirect_to event_path(event), alert: 'Please Sign In.' }
+        format.json { render json: @attendance.errors, status: :unprocessable_entity }
+      end
     end
   end
 

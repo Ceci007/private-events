@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Events</h1>
+<h1>All Events To Assist</h1>
 
 <table>
   <thead>
@@ -9,6 +7,7 @@
       <th>Date</th>
       <th>Location</th>
       <th>Description</th>
+      <th>Created By:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -31,4 +30,6 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<% if current_user? %>
+  <%= link_to 'New Event', new_event_path %>
+<% end %>

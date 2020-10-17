@@ -11,6 +11,8 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @event = Event.find(params[:id])
+    @event_attendees = @event.attendees
   end
 
   # GET /events/new
@@ -25,18 +27,16 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @current_user = current_user
-    @event = @current_user.events.build(event_params)
-
     respond_to do |format|
-      if @event.save
+      if current_user?
+        @event = current_user.events.build(event_params)
+        @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        format.html { render :new }
+        format.html { render :new, alert: 'Please Sign In.' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   private

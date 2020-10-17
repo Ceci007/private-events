@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @event.title %>
@@ -18,6 +16,13 @@
 <p>
   <strong>Description:</strong>
   <%= @event.description %>
+</p>
+
+<p>
+  <strong>Attendees:</strong>
+  <% @event_attendees.each do |attendee| %>
+    <%= attendee.name %>
+  <% end %>
 </p>
 
 <%= link_to 'BUY', "/buy/#{current_user.id}/#{@event.id}" %>
