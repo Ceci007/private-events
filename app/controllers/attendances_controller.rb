@@ -84,13 +84,13 @@ class AttendancesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_attendance
-      @attendance = Attendance.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_attendance
+    @attendance = Attendance.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def attendance_params
-      params.require(:attendance).permit(:user_id, :event_id)
-    end
+  # Only allow a list of trusted parameters through.
+  def attendance_params
+    params.require(:attendance).permit(:user_id, :event_id)
+  end
 end
