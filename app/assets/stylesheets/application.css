@@ -89,3 +89,7 @@ div.actions {
 label {
   display: block; }
 
+  .gbc {
+    background-color: rgb(125, 204, 125);
+  }
+
