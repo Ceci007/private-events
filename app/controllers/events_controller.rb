@@ -20,10 +20,6 @@ class EventsController < ApplicationController
     @event = Event.new
   end
 
-  # GET /events/1/edit
-  # def edit
-  # end
-
   # POST /events
   # POST /events.json
   def create
