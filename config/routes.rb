@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
+
+  get '/buy/:user_id/:event_id', to: 'attendances#buy'
 end

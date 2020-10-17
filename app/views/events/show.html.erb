@@ -20,5 +20,7 @@
   <%= @event.description %>
 </p>
 
+<%= link_to 'BUY', "/buy/#{current_user.id}/#{@event.id}" %>
+<br>
 <%= link_to 'Edit', edit_event_path(@event) %>
 <%= link_to 'Back', root_path %>
