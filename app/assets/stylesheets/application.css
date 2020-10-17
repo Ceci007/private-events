@@ -13,7 +13,13 @@
  *= require_tree .
  *= require_self
  */
- body {
+ @import "bootstrap";
+
+.regina_color {
+   color:rgba(84, 141, 179, 0.438); 
+}
+
+body {
   background-color: #fff;
   color: #333;
   margin: 33px; }
@@ -51,6 +57,10 @@ div.actions {
 #notice {
   color: green; }
 
+#notice_alert {
+  color: red;
+}
+
 .field_with_errors {
   padding: 2px;
   background-color: red;
@@ -79,6 +89,3 @@ div.actions {
 label {
   display: block; }
 
-  #notice_alert {
-    color: red;
-  }
