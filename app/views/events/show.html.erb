@@ -1,31 +1,26 @@
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+<div class="container" >
+  <h1 class="text-center mt-5 mb-4">Events detail info</h1>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
-<h1>Attendees:</h1>
-<div class="row">
-
-  <%= displaylist_user(@event_attendees) %>
+  <div class="card text-center shadow mb-5 bg-white rounded">
+      <div class="card-header font-italic d-flex">
+        <%= link_to gravatar_image_tag(@event.user, size: 50), user_path(@event.user), class: "mr-3" %>
+        <span class="align-self-center">by <%= @event.user.username if @event.user %></span>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title title text-left"><%= @event.title %></h5>
+        <div class="card-text text-left"><%= simple_format(@event.description) %></div>
+        <% if logged_in? && @event.user == current_user %>
+          <div class="text-left">
+            <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-outline-info" %> 
+            <%= link_to 'Delete', event_path(@event), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer text-muted">
+        <small>Created <%= time_ago_in_words(@article.created_at) %> ago, edited <%= time_ago_in_words(@article.updated_at) %> ago</small>
+      </div>
+    </div>
+    <div class="my-4">
+      <%= link_to 'Back to articles', articles_path, class: "link" %>
+    </div>
 </div>
-
-<%= link_to 'BUY', "/buy/#{@event.id}" %>
-<br>
-
-
-<%= link_to 'Edit', edit_event_path(@event) %>
-<%= link_to 'Back', root_path %>

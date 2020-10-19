@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap
  *= require_tree .
  *= require_self
  */
@@ -21,63 +22,11 @@
    color: #333;
  }
  
- h1, h2, h3, h4, h5, h6, .logo {
-   font-family: 'Kumbh Sans', sans-serif;
-   font-weight: 700;
- }
-   
- body, p, ol, ul, td {
-   font-family: verdana, arial, helvetica, sans-serif;
-   font-size: 13px;
-   line-height: 18px;
- }
  
- .navcolor {
-   background-color: #1e0a3c;
- }
-     
- .logo, .white_fa {
-     color: orangered;
-     font-size: 24px;
- }
- 
- .events {
-   color: white
- }
- 
- pre {
-   background-color: #eee;
-   padding: 10px;
-   font-size: 11px; }
- 
- #notice {
-   color: green; }
- 
- #notice_alert {
-   color: red;
- }
- 
- .field_with_errors {
-   padding: 2px;
-   background-color: red;
-   display: table; }
- 
- #error_explanation {
-   width: 450px;
-   border: 2px solid red;
-   padding: 7px 7px 0;
-   margin-bottom: 20px;
-   background-color: #f0f0f0; }
- 
- #error_explanation h2 {
-   text-align: left;
-   font-weight: bold;
-   padding: 5px 5px 5px 15px;
-   font-size: 12px;
-   margin: -7px -7px 0;
-   background-color: #c00;
-   color: #fff; }
+
   
- #error_explanation ul li {
-   font-size: 12px;
-   list-style: square; }
+ 
+
+ 
+
+

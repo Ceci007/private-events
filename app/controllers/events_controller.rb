@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  include SessionsHelper
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: %i[show index]
+  before_action :require_same_user, only: %i[edit update destroy]
 
   # GET /events
   # GET /events.json
@@ -26,7 +27,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     respond_to do |format|
-      if current_user?
+      if current_user
         @event = current_user.events.build(event_params)
         @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -47,5 +48,12 @@ class EventsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:title, :date, :location, :description)
+  end
+
+  def require_same_user
+    return unless current_user != @event.user 
+
+    flash[:alert] = 'You can only edit or delete your own event.'
+    redirect_to @article
   end
 end

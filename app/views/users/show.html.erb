@@ -1,38 +1,10 @@
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="container" >
+  <h1 class="text-center mt-5 mb-4"><%= @user.username %>'s profile</h1>
+  <%= gravatar_image_tag(@user, size: 200) %>
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<h3>
-  All Events Created By:
-  <%= @user.name %>
-</h3>
-
-<div class="row">
-  <%= displaylist(@user_events)%>
+  <% if logged_in? && @user == current_user %>
+    <div class="text-center mt-4">
+      <%= link_to 'Edit your profile', edit_user_path(@user), class: "btn btn-outline-info" %>
+    </div>
+  <% end %>
 </div>
-
-<h3>
-  All Upcoming events Reserved By:
-  <%= @user.name %>
-</h3>
-
-<div class="row">
-  <%= displaylist(@upcoming_events)%>
-</div>
-
-<h3>
-  All past events Reserved By:
-  <%= @user.name %>
-</h3>
-
-<div class="row">
-  <%= displaylist(@past_events)%>
-</div>
-
-<%= link_to 'Back', users_path %>

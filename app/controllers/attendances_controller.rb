@@ -15,7 +15,7 @@ class AttendancesController < ApplicationController
     #   redirect_to event_path(event)
     # end
     respond_to do |format|
-      if current_user?
+      if current_user
         event.attendances.build(user_id: current_user.id)
         event.save
         format.html { redirect_to events_path, notice: 'Purchase went thru successfully!' }
@@ -34,9 +34,9 @@ class AttendancesController < ApplicationController
 
   # GET /attendances/new
   def new
-    # @attendance = Attendance.new
-    # @attendance.user_id = current_user.id
-    # attendance.event_id = @event.id
+    @attendance = Attendance.new
+    @attendance.user_id = current_user.id
+    @attendance.event_id = current_event.id
   end
 
   # GET /attendances/1/edit

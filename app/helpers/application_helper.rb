@@ -1,45 +1,47 @@
 module ApplicationHelper
-  def display_propper_flash
-    if flash[:alert]
-      content_tag(:div, flash[:alert], id: 'notice_alert', align: 'center')
-    elsif flash[:notice]
-      content_tag(:div, flash[:notice], id: 'notice', align: 'center')
-    elsif flash[:danger]
-      content_tag(:div, flash[:danger], id: 'notice_alert', align: 'center')
-    end
+  def gravatar_image_tag(user, options = { size: 80 })
+    email_address = user.email.downcase
+    hash = Digest::MD5.hexdigest(email_address)
+    size = options[:size]
+    gravatar_url = "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
+    image_tag(gravatar_url, alt: user.name)
   end
- 
-  def login_helper
-   content_tag(:div, class: 'navbar navbar-expand-lg navbar-light bg-light') do
-      content_tag(:div) do
-        link_to 'Private Events', root_path, class: 'navbar-brand'
-      end +
+    
+  def displaylist(list)
+    var = content_tag(:div) do
+    end
 
-      content_tag(:div, class: "collapse navbar-collapse") do 
-          content_tag(:div, class: "navbar-nav mr-auto") do
-            if current_user?
-              content_tag(:div, class: "nav-item") do
-                link_to current_user.name, current_user, class: 'nav-link'
-            end +
-              content_tag(:div, class: "nav-item") do
-              link_to 'New Event', new_event_path, class: 'nav-link'
-            end +
-              content_tag(:div, class: "nav-item") do
-              link_to 'All Events', events_path, class: 'nav-link'
-            end +
-              content_tag(:div, class: "nav-item") do
-              link_to 'Logout', logout_path, class: 'nav-link'
+    list.each do |event|
+      var +=
+        content_tag(:div, class: 'w-100 col-3') do
+          content_tag(:div) do
+            link_to image_tag('event.jpeg', alt: 'Logo', class: 'w-100'), event
+          end +
+            content_tag(:p) do
+              "#{event.title} #{event.date}"
             end
-            else
-              content_tag(:div, class: "nav-item") do
-                link_to 'Register', new_user_path, class: 'nav-link'
-              end +
-                content_tag(:div, class: "nav-item") do
-                  link_to 'Login', login_path, class: 'nav-link'
-              end
-            end
-          end
         end
-      end
-   end
+    end
+
+    var
+  end
+
+  def displaylist_user(list)
+    var = content_tag(:div) do
+    end
+
+    list.each do |user|
+      var +=
+        content_tag(:div, class: 'w-100 col-2') do
+          content_tag(:div) do 
+            link_to gravatar_image_tag(user, size: 200), user
+          end +
+            content_tag(:p) do
+              user.username.to_s
+            end
+        end
+    end
+
+    var
+  end
 end

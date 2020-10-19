@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save { self.email = email.downcase if email } 
+  before_save { self.email = email.downcase } 
 
   validates :name, presence: true
   validates :username, presence: true, length: { in: 4..12 }, uniqueness: true
@@ -8,14 +8,9 @@ class User < ApplicationRecord
             length: { maximum: 105 },
             format: { with: VALID_EMAIL_REGEX }
 
-  has_many :events
-  has_many :attendances
+  has_many :events, dependent: :destroy
+  has_many :attendances, dependent: :destroy
   has_many :attended_events, through: :attendances, source: :event
 
-  def avatar
-    email_address = self.email.downcase
-    hash = Digest::MD5.hexdigest(email_address)
-    size = options[:size]
-    gravatar_url = "https://www.gravatar.com/avatar/#{hash}"
-  end
+  has_secure_password
 end
