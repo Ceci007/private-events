@@ -36,7 +36,7 @@ class AttendancesController < ApplicationController
   def new
     @attendance = Attendance.new
     @attendance.user_id = current_user.id
-    @attendance.event_id = current_event.id
+    # @attendance.event_id = current_event.id 
   end
 
   # GET /attendances/1/edit
@@ -47,7 +47,8 @@ class AttendancesController < ApplicationController
   # POST /attendances.json
   def create
     @attendance = Attendance.new(attendance_params)
-
+    @attendance.user_id = current_user.id
+    puts "attendance == #{@attendance}"
     respond_to do |format|
       if @attendance.save
         format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }

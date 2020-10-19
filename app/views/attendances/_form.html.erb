@@ -1,13 +1,12 @@
 <%= form_with(model: attendance, local: true) do |form| %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
+  
+  <%= current_user.username%>
+  <br>
+  <br>
   <div class="field">
     <%= form.label :event_id %>
-    <%= form.text_field :event_id %>
+    <%= form.collection_select :event_id, Event.order(:title),:id,:title, include_blank: false %>
   </div>
 
   <div class="actions">
