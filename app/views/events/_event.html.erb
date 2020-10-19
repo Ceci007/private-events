@@ -1,21 +1,21 @@
-  <% @events.each do |event| %>
+  <% @user.events.each do |event| %>
     <div class="card text-center shadow mb-5 bg-white rounded">
       <div class="card-header font-italic">
-      <% if event.user %>
-        by <%= link_to event.user.username, user_path(event.user), class: "link"  %>
+      <% if event.creator %>
+        by <%= link_to event.creator.username, user_path(event.creator), class: "link"  %>
       <% end %>
       </div>
       <div class="card-body">
         <h5 class="card-title title"><%= event.title %></h5>
         <p class="card-text"><%= truncate(event.description, length: 100) %></p>
         <%= link_to 'Details', event_path(event), class: "btn btn-border-primary" %> 
-        <% if logged_in? && event.user == current_user %>
+        <% if logged_in? && event.creator == current_user %>
           <%= link_to 'Edit', edit_event_path(event), class: "btn btn-outline-info" %> 
           <%= link_to 'Delete', event_path(event), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } %>
         <% end %>
       </div>
       <div class="card-footer text-muted">
-        <small>Created <%= time_ago_in_words(article.created_at) %> ago, edited <%= time_ago_in_words(article.updated_at) %> ago</small>
+        <small>Created <%= time_ago_in_words(event.created_at) %> ago, edited <%= time_ago_in_words(event.updated_at) %> ago</small>
       </div>
     </div>
   <% end %>

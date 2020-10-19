@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "Welcome to FORMS #{@user.username}, you have successfully signed up."
+      flash[:notice] = "Welcome to Private Events #{@user.username}, you have successfully signed up."
       redirect_to @user
     else
       render 'new'
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    return unless current_user != @user && !current_user.admin?
+    return unless current_user != @user
 
     flash[:alert] = 'You can only edit or delete your own account.'
     redirect_to @user
