@@ -7,5 +7,36 @@
     <div class="text-center mt-4">
       <%= link_to 'Edit your profile', edit_user_path(@user), class: "btn btn-outline-info" %>
     </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Event</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% current_user.attendances.each do |attendance| %>
+          <tr>
+            <td><%= attendance.user.username %></td>
+            <td><%= attendance.event.title %></td>
+            <td><%= link_to 'Show', attendance %></td>
+            <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
+            <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h3 class="blue">Upcoming Events</h3>
+    <div class="row">
+      <%= displaylist(@future_events)%>
+    </div>
+    <h3 class="blue">Past Events</h3>
+    <div class="row">
+      <%= displaylist(@past_events)%>
+    </div>
   <% end %>
 </div>

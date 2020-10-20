@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   before_action :require_user, only: %i[edit update]
   before_action :require_same_user, only: %i[edit update destroy]
 
-  def show; end
+  def show
+    @future_events = current_user.attended_events.upcoming_events
+    @past_events = current_user.attended_events.past_events
+  end
 
   def index
     @users = User.all
