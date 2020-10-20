@@ -12,5 +12,21 @@ class User < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :attended_events, through: :attendances, source: :event
 
+  # host
+  has_many :sent_invitations, foreign_key: :host_id, class_name: 'Invitation'
+  has_many :invited_users, through: :sent_invitations
+
+  #guest
+  has_many :received_invitations, foreign_key: :guest_id, class_name: 'Invitation'
+  has_many :invitor_users, through: :received_invitations
+
+  # event received in invitation
+  has_many :received_events, foreign_key: :event_id, class_name: 'Invitation'
+  has_many :received_invitation_events, through: :received_events
+
+  # event proposed by user
+  has_many :sent_events, foreign_key: :event_id, class_name: 'Invitation'
+  has_many :sent_invitation_events, through: :sent_events
+  
   has_secure_password
 end
