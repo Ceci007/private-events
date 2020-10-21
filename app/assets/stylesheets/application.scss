@@ -14,28 +14,20 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap";
- @import "font-awesome";
-  
- body {
-   background-color: #fff;
-   color: #333;
- }
+@import "bootstrap";
+@import "font-awesome";
 
- .center-img img{
-   display: block;
-   margin: 0 auto;
- }
- 
- .btn-center {
-   display: block;
-   margin: 0 auto;
- }
- 
+body {
+  background-color: #fff;
+  color: #333;
+}
 
-  
- 
+.center-img img {
+  display: block;
+  margin: 0 auto;
+}
 
- 
-
-
+.btn-center {
+  display: block;
+  margin: 0 auto;
+}

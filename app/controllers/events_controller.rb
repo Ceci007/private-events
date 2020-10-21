@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: %i[show edit update destroy]
   before_action :require_user, except: %i[show index]
   before_action :require_same_user, only: %i[edit update destroy]
 
@@ -40,6 +40,7 @@ class EventsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
@@ -51,7 +52,7 @@ class EventsController < ApplicationController
   end
 
   def require_same_user
-    return unless current_user != @event.user 
+    return unless current_user != @event.user
 
     flash[:alert] = 'You can only edit or delete your own event.'
     redirect_to @article

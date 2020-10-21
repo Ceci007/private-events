@@ -6,7 +6,7 @@ module ApplicationHelper
     gravatar_url = "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
     image_tag(gravatar_url, alt: user.name)
   end
-    
+
   def displaylist(list)
     var = content_tag(:div) do
     end
@@ -33,7 +33,7 @@ module ApplicationHelper
     list.each do |user|
       var +=
         content_tag(:div, class: 'w-100 col-2') do
-          content_tag(:div) do 
+          content_tag(:div) do
             link_to gravatar_image_tag(user, size: 200), user
           end +
             content_tag(:p) do

@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-  before_action :set_attendance, only: [:show, :edit, :update, :destroy]
+  before_action :set_attendance, only: %i[show edit update destroy]
 
   # GET /attendances
   # GET /attendances.json
@@ -37,12 +37,11 @@ class AttendancesController < ApplicationController
   def new
     @attendance = Attendance.new
     @attendance.user_id = current_user.id
-    # @attendance.event_id = current_event.id 
+    # @attendance.event_id = current_event.id
   end
 
   # GET /attendances/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /attendances
   # POST /attendances.json
@@ -85,6 +84,7 @@ class AttendancesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_attendance
     @attendance = Attendance.find(params[:id])
