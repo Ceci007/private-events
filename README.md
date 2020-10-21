@@ -9,6 +9,8 @@ This is the fifth collaborative project from the Ruby on Rails module from the M
 
 ![app screenshot 3](./screen-3.png)
 
+![app screenshot 4](./screen-4.png)
+
 ## 🔧 Built With these features
 - Ruby. v2.6.6
 - Ruby on Rails. v6.0.3.3
