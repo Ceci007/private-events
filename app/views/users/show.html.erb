@@ -1,6 +1,6 @@
 <div class="container" >
   <h1 class="text-center mt-5 mb-4"><%= @user.username %>'s profile</h1>
-  <div class="center-img"> 
+  <div class="center-img my-3"> 
     <%= gravatar_image_tag(@user, size: 200)%>
   </div>
 
@@ -33,19 +33,23 @@
       </table>
     <%end%>
 
-    <% if @future_events.any?%>
-      <h3 class="my-3">Upcoming Events</h3>
-      <div class="row">
-        <%= displaylist(@future_events)%>
-      </div>
-    <% end%>
+    <% if@future_events.any? ||  @past_events.any?%>
+    <h2>Created Events</h2>
 
-    <% if @past_events.any?%>
-      <h3 class="my-3">Past Events</h3>
-      <div class="row">
-        <%= displaylist(@past_events)%>
-      </div>
-    <% end%>
+      <% if @future_events.any?%>
+        <h3 class="my-3">Upcoming Events</h3>
+        <div class="row">
+          <%= displaylist(@future_events)%>
+        </div>
+      <% end%>
+
+      <% if @past_events.any?%>
+        <h3 class="my-3">Past Events</h3>
+        <div class="row">
+          <%= displaylist(@past_events)%>
+        </div>
+      <% end%>
+    <%end%>
 
   <% end %>
 </div>

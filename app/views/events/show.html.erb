@@ -9,12 +9,15 @@
       <div class="card-body">
         <h5 class="card-title title text-left"><%= @event.title %></h5>
         <div class="card-text text-left"><%= simple_format(@event.description) %></div>
-        <% if logged_in? && @event.creator == current_user %>
-          <div class="text-left">
-            <%= link_to 'Edit', edit_event_path(@event), class: "btn btn-outline-info" %> 
-            <%= link_to 'Delete', event_path(@event), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } %>
-          </div>
-        <% end %>
+        <%= event_process_links(@event)%>
+        <div class="card-text text-left mt-3">
+          <h5>Attendees:</h5>
+          <ul>
+            <% @event.attendances.each do | attendance | %>
+              <li><%= attendance.user.username%></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
       <div class="card-footer text-muted">
         <small>Created <%= time_ago_in_words(@event.created_at) %> ago, edited <%= time_ago_in_words(@event.updated_at) %> ago</small>

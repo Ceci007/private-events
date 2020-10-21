@@ -7,25 +7,6 @@ class AttendancesController < ApplicationController
     @attendances = Attendance.all
   end
 
-  def buy
-    event = Event.find(params[:event_id])
-    # unless current_user.nil?
-    # event.attendances.build(user_id: current_user.id)
-    # else
-    #   redirect_to event_path(event)
-    # end
-    respond_to do |format|
-      if current_user
-        event.attendances.build(user_id: current_user.id)
-        event.save
-        format.html { redirect_to events_path, notice: 'Purchase went thru successfully!' }
-        format.json { render :show, status: :created, location: @attendance }
-      else
-        format.html { redirect_to event_path(event), alert: 'Please Sign In.' }
-        format.json { render json: @attendance.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # GET /attendances/1
   # GET /attendances/1.json

@@ -39,6 +39,25 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, notice: "Your event was updated"
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_path
+  end 
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -52,9 +71,9 @@ class EventsController < ApplicationController
   end
 
   def require_same_user
-    return unless current_user != @event.user
+    return unless current_user != @event.creator
 
     flash[:alert] = 'You can only edit or delete your own event.'
-    redirect_to @article
+    redirect_to @event
   end
 end

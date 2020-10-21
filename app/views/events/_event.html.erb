@@ -8,11 +8,9 @@
       <div class="card-body">
         <h5 class="card-title title"><%= event.title %></h5>
         <p class="card-text"><%= truncate(event.description, length: 100) %></p>
-        <%= link_to 'Details', event_path(event), class: "btn btn-border-primary" %> 
-        <% if logged_in? && event.creator == current_user %>
-          <%= link_to 'Edit', edit_event_path(event), class: "btn btn-outline-info" %> 
-          <%= link_to 'Delete', event_path(event), class: "btn btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
+        <%= link_to 'Details', event_path(event), class: "btn btn-border-primary" %>
+        <%= event_process_links(event)%>
+        
       </div>
       <div class="card-footer text-muted">
         <small>Created <%= time_ago_in_words(event.created_at) %> ago, edited <%= time_ago_in_words(event.updated_at) %> ago</small>
