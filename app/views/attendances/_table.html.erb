@@ -3,7 +3,7 @@
     <tr>
       <th scope="col">User</th>
       <th scope="col">Event</th>
-      <th scope="col" colspan="3"></th>
+      <th scope="col" colspan="2">options</th>
     </tr>
   </thead>
 
@@ -12,9 +12,8 @@
       <tr scope="row">
         <td><%= attendance.user.username %></td>
         <td><%= attendance.event.title %></td>
-        <td><%= link_to 'Show', attendance %></td>
-        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', attendance, class: "btn btn-success btn-center" %></td>
+        <td><%= link_to 'Edit', edit_attendance_path(attendance), class: "btn btn-info btn-center" %></td>
       </tr>
     <% end %>
   </tbody>

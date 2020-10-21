@@ -10,27 +10,28 @@
       <%= link_to 'Edit your profile', edit_user_path(@user), class: "btn btn-outline-info my-3" %>
     </div>
 
-    <table class="table table-striped table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">User</th>
-          <th scope="col">Event</th>
-          <th scope="col" colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% current_user.attendances.each do |attendance| %>
-          <tr scope="row">
-            <td><%= attendance.user.username %></td>
-            <td><%= attendance.event.title %></td>
-            <td><%= link_to 'Show', attendance %></td>
-            <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-            <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if current_user.attendances.any?%>
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Event</th>
+            <th scope="col" colspan="2">options</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% current_user.attendances.each do |attendance| %>
+            <tr scope="row">
+              <td><%= attendance.user.username %></td>
+              <td><%= attendance.event.title %></td>
+              <td><%= link_to 'Show', attendance, class: "btn btn-success btn-center" %></td>
+              <td><%= link_to 'Edit', edit_attendance_path(attendance), class: "btn btn-info btn-center" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <%end%>
 
     <% if @future_events.any?%>
       <h3 class="my-3">Upcoming Events</h3>

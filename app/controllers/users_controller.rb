@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Welcome to Private Events #{@user.username}, you have successfully signed up."
+      puts flash[:notice]
       redirect_to @user
     else
       render 'new'
