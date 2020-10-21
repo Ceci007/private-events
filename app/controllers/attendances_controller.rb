@@ -30,6 +30,7 @@ class AttendancesController < ApplicationController
   # GET /attendances/1
   # GET /attendances/1.json
   def show
+    @event = Event.find(@attendance.event_id)
   end
 
   # GET /attendances/new
@@ -48,7 +49,6 @@ class AttendancesController < ApplicationController
   def create
     @attendance = Attendance.new(attendance_params)
     @attendance.user_id = current_user.id
-    puts "attendance == #{@attendance}"
     respond_to do |format|
       if @attendance.save
         format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }

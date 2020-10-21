@@ -1,11 +1,11 @@
 <p>
   <strong>User:</strong>
-  <%= @attendance.user_id %>
+  <%= current_user.name %>
 </p>
 
 <p>
   <strong>Event:</strong>
-  <%= @attendance.event_id %>
+  <%= @event.title %>
 </p>
 
 <%= link_to 'Edit', edit_attendance_path(@attendance) %> 
