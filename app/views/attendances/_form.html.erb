@@ -1,0 +1,14 @@
+<%= form_with(model: attendance, local: true) do |form| %>
+
+  <div class="input-group my-3">
+    <div class="input-group-prepend">
+      <%= form.label :event_id, class:"input-group-text" %>
+    </div>
+    <%= form.collection_select :event_id, Event.order(:title),:id,:title, include_blank: false, class: "form-control shadow rounded custom-select" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit( class: "btn btn-primary") %>
+    <%= link_to 'Back', attendances_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

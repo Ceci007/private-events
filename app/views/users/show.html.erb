@@ -1,0 +1,55 @@
+<div class="container" >
+  <h1 class="text-center mt-5 mb-4"><%= @user.username %>'s profile</h1>
+  <div class="center-img my-3"> 
+    <%= gravatar_image_tag(@user, size: 200)%>
+  </div>
+
+  <% if logged_in? && @user == current_user %>
+    <%= render  "events/event" %>
+    <div class="text-center mt-4">
+      <%= link_to 'Edit your profile', edit_user_path(@user), class: "btn btn-outline-info my-3" %>
+    </div>
+
+    <% if current_user.attendances.any?%>
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Event</th>
+            <th scope="col" colspan="2">options</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% current_user.attendances.each do |attendance| %>
+            <tr scope="row">
+              <td><%= attendance.user.username %></td>
+              <td><%= attendance.event.title %></td>
+              <td><%= link_to 'Show', attendance, class: "btn btn-success btn-center" %></td>
+              <td><%= link_to 'Edit', edit_attendance_path(attendance), class: "btn btn-info btn-center" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <%end%>
+
+    <% if@future_events.any? ||  @past_events.any?%>
+    <h2>Created Events</h2>
+
+      <% if @future_events.any?%>
+        <h3 class="my-3">Upcoming Events</h3>
+        <div class="row">
+          <%= displaylist(@future_events)%>
+        </div>
+      <% end%>
+
+      <% if @past_events.any?%>
+        <h3 class="my-3">Past Events</h3>
+        <div class="row">
+          <%= displaylist(@past_events)%>
+        </div>
+      <% end%>
+    <%end%>
+
+  <% end %>
+</div>

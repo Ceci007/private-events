@@ -1,0 +1,12 @@
+<p>
+  <strong>User:</strong>
+  <%= current_user.name %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @event.title %>
+</p>
+
+<%= link_to 'Edit', edit_attendance_path(@attendance) %> 
+<%= link_to 'Back', attendances_path %>
